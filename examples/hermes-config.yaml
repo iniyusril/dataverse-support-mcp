@@ -1,0 +1,26 @@
+# Add to ~/.hermes/config.yaml, then run /reload-mcp in Hermes.
+mcp_servers:
+  dv_support:
+    command: "uvx"
+    args: ["dataverse-support-mcp"]
+    # Straight from a git repository instead of PyPI:
+    # args: ["--from", "git+https://github.com/<you>/dataverse-support-mcp", "dataverse-support-mcp"]
+    env:
+      DV_URL: "https://yourorg.crm5.dynamics.com"
+      DV_TENANT_ID: "00000000-0000-0000-0000-000000000000"
+      DV_CLIENT_ID: "00000000-0000-0000-0000-000000000000"
+      DV_CLIENT_SECRET: "change-me"
+      DV_SUPPORT_ADDRESS: "support@yourdomain.com"
+      DV_SENDER_QUEUE_ID: "00000000-0000-0000-0000-000000000000"
+      DV_REPLY_SIGNATURE: "Best regards,\\nSupport Team"
+      # DV_ALLOW_SEND: "true"   # enable only after reviewing drafts for a while
+    tools:
+      include:
+        - list_new_emails
+        - get_email
+        - find_contact
+        - create_contact
+        - search_knowledge
+        - create_reply
+        - escalate_to_human
+        - mark_processed
